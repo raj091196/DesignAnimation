@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#121212</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="white_opaque">#FFFFFFFF</color>
-    <color name="pitch_black">#121212</color>
+    <color name="background_color">#181837</color>
     <color name="saffron">#F1B136</color>
     <color name="sienna">#EB6460</color>
 </resources>

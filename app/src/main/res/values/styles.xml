@@ -5,9 +5,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:background">@color/pitch_black</item>
-        <item name="android:windowBackground">@color/pitch_black</item>
-        <item name="android:colorBackground">@color/pitch_black</item>
+        <item name="android:background">@color/background_color</item>
+        <item name="android:windowBackground">@color/background_color</item>
+        <item name="android:colorBackground">@color/background_color</item>
     </style>
 
 </resources>

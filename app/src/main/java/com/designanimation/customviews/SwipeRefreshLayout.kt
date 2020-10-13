@@ -18,6 +18,8 @@ import android.widget.AbsListView
 import androidx.core.view.ViewCompat
 import androidx.customview.widget.ViewDragHelper
 import com.designanimation.R
+import com.designanimation.customviews.explosion.ExplosionListener
+import com.designanimation.customviews.explosion.ExplosionView
 import com.designanimation.isNull
 import kotlin.math.abs
 import kotlin.math.pow
@@ -28,7 +30,7 @@ class SwipeRefreshLayout @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : ViewGroup(context, attrs, defStyleAttr) {
+) : ViewGroup(context, attrs, defStyleAttr), ExplosionListener {
 
     private var animationDuration: String? = "4000"
 
@@ -76,8 +78,12 @@ class SwipeRefreshLayout @JvmOverloads constructor(
 
     private var mTargetPaddingLeft = 0
 
+    private var explosionView: ExplosionView? = null
+
     init {
         getAttrs(context, attrs)
+        explosionView = ExplosionView(context)
+        explosionView?.setExplosionListener(this)
         mDecelerateInterpolator = DecelerateInterpolator(DECELERATE_INTERPOLATION_FACTOR)
         mTouchSlop = ViewConfiguration.get(context).scaledTouchSlop
         mTotalDragDistance = PixelUtils.convertDpToPixel(context, DRAG_MAX_DISTANCE)
@@ -286,6 +292,7 @@ class SwipeRefreshLayout @JvmOverloads constructor(
         override fun onAnimationEnd(animation: Animation) {
             refreshView?.stop()
             mCurrentOffsetTop = mTarget?.top!!
+            mListener?.onRefreshCompleted()
         }
     }
 
@@ -463,8 +470,14 @@ class SwipeRefreshLayout @JvmOverloads constructor(
 
         private const val DECELERATE_INTERPOLATION_FACTOR = 1f
     }
+
+    override fun onFinish() {
+        refreshView?.stop()
+        animateOffsetToStartPosition()
+    }
 }
 
 interface OnRefreshListener {
     fun onRefresh()
+    fun onRefreshCompleted()
 }

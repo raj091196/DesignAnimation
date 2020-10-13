@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/projectImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/projectImage1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/ic_round_corner_drawable" />
+
+            <ImageView
+                android:id="@+id/projectImage2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:layout_toEndOf="@+id/projectImage1"
+                android:background="@drawable/ic_round_corner_drawable" />
+
+            <ImageView
+                android:id="@+id/projectImage3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/projectImage1"
+                android:layout_margin="5dp"
+                android:background="@drawable/ic_round_corner_drawable" />
+
+            <ImageView
+                android:id="@+id/projectImage4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/projectImage2"
+                android:layout_margin="5dp"
+                android:layout_toEndOf="@+id/projectImage3"
+                android:background="@drawable/ic_round_corner_drawable" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="150dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_toEndOf="@+id/projectImage"
+            android:background="@drawable/text_view_shimmer_bg"
+            android:textColor="@color/white_opaque"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/subTitle"
+            android:layout_width="100dp"
+            android:layout_height="15dp"
+            android:layout_below="@+id/title"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/projectImage"
+            android:background="@drawable/text_view_shimmer_bg"
+            android:textColor="@color/white_opaque"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/projectItem"
+            android:layout_width="100dp"
+            android:layout_height="15dp"
+            android:layout_below="@+id/subTitle"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/projectImage"
+            android:background="@drawable/text_view_shimmer_bg"
+            android:textColor="@color/white_opaque"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/projectImage"
+            android:layout_marginTop="20dp"
+            android:background="#2B2828" />
+
+    </RelativeLayout>
+</layout>

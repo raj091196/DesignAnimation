@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DesignAnimation</string>
+    <string name="projects">Projects</string>
+    <string name="projects_count">21 Projects</string>
 </resources>
