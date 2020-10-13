@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SwipeRefreshLayout">
+
+        <attr name="refreshDrawable" format="integer" />
+        <attr name="beatingRate" format="integer" />
+        <attr name="animationDuration" format="string"/>
+
+    </declare-styleable>
+
+</resources>
