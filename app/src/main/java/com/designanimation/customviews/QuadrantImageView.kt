@@ -93,6 +93,7 @@ class QuadrantImageView @JvmOverloads constructor(
             LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
         )
+        params.setMargins(10, 10, 10, 10)
         addView(imageView, params)
     }
 }

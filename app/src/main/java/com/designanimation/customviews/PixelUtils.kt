@@ -2,12 +2,10 @@ package com.designanimation.customviews
 
 import android.content.Context
 import android.content.res.Resources
-import android.graphics.*
-import android.util.DisplayMetrics
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.util.TypedValue
 import android.view.View
-import android.view.WindowManager
-import androidx.annotation.DrawableRes
 import kotlin.math.roundToInt
 
 
@@ -28,43 +26,6 @@ class PixelUtils {
                 r.displayMetrics
             )
             return px.roundToInt()
-        }
-
-        @JvmStatic
-        fun convertDpToFloatPixel(context: Context, dp: Float): Float {
-            val r: Resources = context.resources
-            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.displayMetrics)
-        }
-
-        @JvmStatic
-        @Suppress("Deprecation")
-        fun getDisplayMetrics(context: Context): DisplayMetrics {
-            val metrics = DisplayMetrics()
-            val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-            wm.defaultDisplay.getMetrics(metrics)
-            return metrics
-        }
-
-        @JvmStatic
-        fun getRoundedCornerBitmap(@DrawableRes id: Int, pixels: Int, context: Context): Bitmap? {
-            val bitmap = BitmapFactory.decodeResource(context.resources, id)
-            val output = Bitmap.createBitmap(
-                bitmap.width, bitmap
-                    .height, Bitmap.Config.ARGB_8888
-            )
-            val canvas = Canvas(output)
-            val color = -0xbdbdbe
-            val paint = Paint()
-            val rect = Rect(0, 0, bitmap.width, bitmap.height)
-            val rectF = RectF(rect)
-            val roundPx = pixels.toFloat()
-            paint.isAntiAlias = true
-            canvas.drawARGB(0, 0, 0, 0)
-            paint.color = color
-            canvas.drawRoundRect(rectF, roundPx, roundPx, paint)
-            paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
-            canvas.drawBitmap(bitmap, rect, rect, paint)
-            return output
         }
 
         @JvmStatic
