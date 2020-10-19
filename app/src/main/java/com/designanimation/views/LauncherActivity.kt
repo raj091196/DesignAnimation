@@ -12,6 +12,7 @@ import com.designanimation.databinding.LayoutLauncherBinding
 import com.designanimation.model.Project
 import com.designanimation.views.adapter.ProjectAdapter
 
+
 @Suppress("UNCHECKED_CAST")
 class LauncherActivity : BaseActivity(), OnRefreshListener {
 
@@ -21,16 +22,18 @@ class LauncherActivity : BaseActivity(), OnRefreshListener {
 
     private lateinit var project: ArrayList<Project>
 
+    private lateinit var linearLayoutManager: LinearLayoutManager
+
     private val handler = Handler(Looper.getMainLooper())
 
     private val loadingRunnable: Runnable = Runnable {
-        adapter.setItem(project.clone() as ArrayList<Project>)
+        binding.recyclerView.hideLoader()
     }
 
     override fun initListeners() {
-        project = Project.formProjects(10)
-        adapter = ProjectAdapter(project.clone() as ArrayList<Project>)
-        val linearLayoutManager = LinearLayoutManager(this)
+        project = Project.formProjects(10, this)
+        adapter = ProjectAdapter(project)
+        linearLayoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = linearLayoutManager
         binding.recyclerView.adapter = adapter
         binding.swipeRefreshLayout.setOnRefreshListener(this)
@@ -41,11 +44,11 @@ class LauncherActivity : BaseActivity(), OnRefreshListener {
     }
 
     override fun onRefresh() {
-        d("OnRefresh")
+        d("OnRefresh:::::SwipeRefreshLayout")
     }
 
     override fun onRefreshCompleted() {
-        adapter.setLoading(project.size)
+        binding.recyclerView.showLoader(project.size)
         handler.postDelayed(loadingRunnable, 2000)
     }
 }

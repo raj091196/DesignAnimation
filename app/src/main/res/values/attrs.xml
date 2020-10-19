@@ -9,4 +9,15 @@
 
     </declare-styleable>
 
+    <declare-styleable name="RoundedCornerImageView">
+
+        <attr name="roundedDrawable" format="integer" />
+
+    </declare-styleable>
+
+    <declare-styleable name="ShimmerRecyclerView">
+
+        <attr name="shimmerLayout" format="integer" />
+    </declare-styleable>
+
 </resources>

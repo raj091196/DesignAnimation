@@ -38,12 +38,12 @@
                 android:textColor="@color/white_opaque"
                 android:textSize="14sp" />
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.designanimation.customviews.ShimmerRecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
-                tools:listitem="@layout/item_project" />
+                app:shimmerLayout="@layout/item_project_shimmer" />
 
         </LinearLayout>
 

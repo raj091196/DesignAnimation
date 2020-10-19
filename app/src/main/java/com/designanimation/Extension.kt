@@ -7,7 +7,7 @@ fun <T> T?.isNull(default: T): T {
     return this
 }
 
-fun <T> List<T>?.isEmpty(function: (List<T>) -> Unit,function1: () -> Unit) {
+fun <T> List<T>?.isEmpty(function: (List<T>) -> Unit, function1: () -> Unit) {
     if (this == null || this.isEmpty()) {
         function1()
         return

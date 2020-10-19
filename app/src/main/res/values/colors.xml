@@ -7,4 +7,5 @@
     <color name="background_color">#181837</color>
     <color name="saffron">#F1B136</color>
     <color name="sienna">#EB6460</color>
+    <color name="loading_bg">#2B2828</color>
 </resources>

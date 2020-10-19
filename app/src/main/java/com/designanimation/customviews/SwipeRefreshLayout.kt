@@ -17,6 +17,9 @@ import android.view.animation.Transformation
 import android.widget.AbsListView
 import androidx.core.view.ViewCompat
 import androidx.customview.widget.ViewDragHelper
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.designanimation.R
 import com.designanimation.customviews.explosion.ExplosionListener
 import com.designanimation.customviews.explosion.ExplosionView
@@ -282,6 +285,7 @@ class SwipeRefreshLayout @JvmOverloads constructor(
 
     private val refreshCompleteRunnable: Runnable = Runnable {
         setRefreshing(false)
+        mListener?.onRefreshCompleted()
     }
 
     private val mToStartListener: AnimationListener = object : AnimationListener {
@@ -292,7 +296,6 @@ class SwipeRefreshLayout @JvmOverloads constructor(
         override fun onAnimationEnd(animation: Animation) {
             refreshView?.stop()
             mCurrentOffsetTop = mTarget?.top!!
-            mListener?.onRefreshCompleted()
         }
     }
 
@@ -450,11 +453,25 @@ class SwipeRefreshLayout @JvmOverloads constructor(
             } else {
                 mTarget!!.scrollY > 0
             }
+        } else if (mTarget is ViewGroup) {
+            canRecyclerViewScroll(mTarget as ViewGroup)
         } else {
             ViewCompat.canScrollVertically(mTarget, -1)
         }
     }
 
+    private fun canRecyclerViewScroll(viewGroup: ViewGroup): Boolean {
+        for (i in 0 until viewGroup.childCount) {
+            val child = viewGroup.getChildAt(i)
+            if (child is RecyclerView) {
+                if (child.layoutManager is LinearLayoutManager)
+                    return (child.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition() != 0
+                else if (child.layoutManager is GridLayoutManager)
+                    return (child.layoutManager as GridLayoutManager).findFirstCompletelyVisibleItemPosition() != 0
+            }
+        }
+        return false
+    }
 
     fun setOnRefreshListener(listener: OnRefreshListener) {
         mListener = listener
